@@ -171,7 +171,7 @@ function getIdItemClicked(id) {
     $(".container-product-secifications .more-image .bottom-image").attr("src", "" + allProduct[id].bottomImage2 + "");
     $(".container-product-secifications .more-image .bottom-image").attr("src", "" + allProduct[id].bottomImage3 + "");
     $(".container-product-secifications .more-image .bottom-image").attr("src", "" + allProduct[id].bottomImage4 + "");
-    $(".container-product-secifications .product-secifications .title").text(" تست : " + allProduct[id].title);
+    $(".container-product-secifications .product-secifications .title").text(allProduct[id].title);
     $(".container-product-secifications .product-secifications .material").text(" تست : " + allProduct[id].material);
     $(".container-product-secifications .product-secifications .description").text(" توضیحات : " + allProduct[id].description);
 }
