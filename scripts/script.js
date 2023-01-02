@@ -1,7 +1,7 @@
 $(document).ready(function () {
-        (function () {
-            for (let i = 0; i < boxContainer.length; i++) {
-                document.querySelector(".Products .row").innerHTML += `
+    (function () {
+        for (let i = 0; i < boxContainer.length; i++) {
+            document.querySelector(".Products .row").innerHTML += `
                 <div class="`+ boxContainer[i].whatBox + ` col-11 container" data-aos="zoom-in-up" data-aos-duration="2000">
                     <div class="row">
                         <div class="about-container-post col-md-2 col-3">
@@ -17,11 +17,11 @@ $(document).ready(function () {
                         </div>
                     </div>
                 </div>`;
-                if (i == boxContainer.length - 1) {
-                    addProductToBox();
-                }
+            if (i == boxContainer.length - 1) {
+                addProductToBox();
             }
-        }());
+        }
+    }());
 
     $(".click-home-page").click(function () {
         window.location = "index.html";
@@ -155,20 +155,23 @@ function addProductToBox() {
 }
 
 function scrollToItemSelect(item) {
-    if (window.location.href.indexOf("index.html") > -1) {
-        let elementScroll = document.getElementById(item).offsetTop;
-        if (item == "product") {
-            window.scrollTo({ top: elementScroll + 70, behavior: 'smooth' });
-        } else {
-            window.scrollTo({ top: elementScroll - 50, behavior: 'smooth' });
-        }
+    let elementScroll = document.getElementById(item).offsetTop;
+    if (item == "product") {
+        window.scrollTo({ top: elementScroll + 50, behavior: 'smooth' });
     } else {
-        window.location = "index.html";
-        scrollToItemSelect(item);
+        window.scrollTo({ top: elementScroll - 50, behavior: 'smooth' });
     }
 }
 
+
 function getIdItemClicked(id) {
     $(".bg-container-product-secifications").fadeIn(800);
-    $(".container-product-secifications .product-secifications .title").text(allProduct[id].title);
+    $(".container-product-secifications .main-image").attr("src", "" + allProduct[id].mainImage + "");
+    $(".container-product-secifications .more-image .bottom-image").attr("src", "" + allProduct[id].bottomImage1 + "");
+    $(".container-product-secifications .more-image .bottom-image").attr("src", "" + allProduct[id].bottomImage2 + "");
+    $(".container-product-secifications .more-image .bottom-image").attr("src", "" + allProduct[id].bottomImage3 + "");
+    $(".container-product-secifications .more-image .bottom-image").attr("src", "" + allProduct[id].bottomImage4 + "");
+    $(".container-product-secifications .product-secifications .title").text(" تست : " + allProduct[id].title);
+    $(".container-product-secifications .product-secifications .material").text(" تست : " + allProduct[id].material);
+    $(".container-product-secifications .product-secifications .description").text(" توضیحات : " + allProduct[id].description);
 }
