@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    if (window.location.href.indexOf("index.html") > -1) {
         (function () {
             for (let i = 0; i < boxContainer.length; i++) {
                 document.querySelector(".Products .row").innerHTML += `
@@ -23,7 +22,6 @@ $(document).ready(function () {
                 }
             }
         }());
-    }
 
     $(".click-home-page").click(function () {
         window.location = "index.html";
