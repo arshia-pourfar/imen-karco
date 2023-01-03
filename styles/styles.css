@@ -227,11 +227,6 @@ body {
     background-color: rgb(185, 227, 255);
 }
 
-.scroller {
-    scrollbar-color: rebeccapurple green;
-    scrollbar-width: thin;
-}
-
 /* Post >> Items */
 .post {
     margin-right: 30px;
@@ -356,8 +351,6 @@ body {
     font-style: italic;
     text-align: right;
 }
-
-
 
 /* Customers */
 
@@ -763,8 +756,8 @@ body {
         text-align: right;
         display: inline-block;
         position: relative;
-        right: 2%;
-        top: 7px;
+        right: 3%;
+        top: 10px;
         font-size: 27px;
     }
 
@@ -815,6 +808,17 @@ body {
         display: none;
     }
 
+    #whyus .posts .post-item:hover {
+        box-shadow: none;
+    }
+
+    #customers .container .company-logo span:hover {
+        opacity: 1;
+    }
+
+    .Products .about-container-post .icon-product-box {
+        width: 50%;
+    }
 
     .Products .about-container-post .text {
         font-size: 115%;
@@ -878,5 +882,12 @@ body {
     #footer .copy-right svg {
         color: #fff;
         font-size: 15px;
+    }
+}
+
+@media only screen and (max-width:325px) {
+    .Products .about-container-post .text {
+        font-size: 10px;
+        line-height: 10px;
     }
 }

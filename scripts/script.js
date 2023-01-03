@@ -11,7 +11,7 @@ $(document).ready(function () {
                         <div class="post-container col-md-10 col-9">
                             <button class="scroll-left-post" id="scroll-left-post-`+ boxContainer[i].whatBox + `">
                                 <i class="fas fa-arrow-left"></i></button>
-                            <button class="scroll-right-post " id="scroll-right-post-`+ boxContainer[i].whatBox + `">
+                            <button class="scroll-right-post" id="scroll-right-post-`+ boxContainer[i].whatBox + `">
                                 <i class="fas fa-arrow-right"></i></button>
                             <div class="post" id="box-post-`+ boxContainer[i].whatBox + `"></div>
                         </div>
