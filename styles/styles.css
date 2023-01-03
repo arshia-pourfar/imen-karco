@@ -79,7 +79,7 @@ body {
 }
 
 #nav ul li a {
-    padding: 20px 8px;
+    padding: 16px 8px;
     text-decoration: none;
     color: #454952;
     font-weight: bold;
@@ -661,6 +661,7 @@ body {
 
     #nav ul li a {
         font-size: 15px;
+         padding: 20px 7px;
     }
 
     #nav ul li svg {
