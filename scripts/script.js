@@ -5,8 +5,8 @@ $(document).ready(function () {
                 <div class="`+ boxContainer[i].whatBox + ` col-11 container" data-aos="zoom-in-up" data-aos-duration="2000">
                     <div class="row">
                         <div class="about-container-post col-md-2 col-3">
+                            <img src="`+ boxContainer[i].icon + `" class="icon-product-box col-12">
                             <span class="text col-12">`+ boxContainer[i].whatTitleBox + `</span>
-                            <a href="#" class="show-more col-12">مشاهده همه<i class="fas fa-arrow-left"></i></a>
                         </div>
                         <div class="post-container col-md-10 col-9">
                             <button class="scroll-left-post" id="scroll-left-post-`+ boxContainer[i].whatBox + `">
@@ -40,25 +40,18 @@ $(document).ready(function () {
     });
 
     $(".menu-btn").click(function () {
-        $(".menu-btn").css("display", "none");
-        $(".slide-nav").addClass('col-6');
-        $(".slide-nav").show(800);
-        $(".slide-nav .nav").css("display", "block");
+        $(".slide-nav").toggle(600);
+        $(".slide-nav").toggleClass("col-12 col-12");
+        $(".menu-btn").toggleClass("open-menu close-menu");
+        $(".menu-btn svg").toggleClass("fa-xmark fa-bars");
     });
 
-    $(".close-slide-nav").click(function () {
-        $(".slide-nav .nav").css("display", "none");
-        $(".slide-nav").hide(600);
-        $(".slide-nav").removeClass('col-6');
-        $(".menu-btn").css("display", "block");
+    $("#scroll-left-post-shirt").click(function () {
+        checkScrollBox("shirt", "left");
     });
 
-    $("#scroll-left-post-shert").click(function () {
-        checkScrollBox("shert", "left");
-    });
-
-    $("#scroll-right-post-shert").click(function () {
-        checkScrollBox("shert", "right");
+    $("#scroll-right-post-shirt").click(function () {
+        checkScrollBox("shirt", "right");
     });
 
     $("#scroll-left-post-hat").click(function () {
@@ -69,12 +62,12 @@ $(document).ready(function () {
         checkScrollBox("hat", "right");
     });
 
-    $("#scroll-left-post-shoose").click(function () {
-        checkScrollBox("shoose", "left");
+    $("#scroll-left-post-shoes").click(function () {
+        checkScrollBox("shoes", "left");
     });
 
-    $("#scroll-right-post-shoose").click(function () {
-        checkScrollBox("shoose", "right");
+    $("#scroll-right-post-shoes").click(function () {
+        checkScrollBox("shoes", "right");
     });
 
     $("#footer .item-about-us .read-more p").click(function () {
@@ -85,9 +78,17 @@ $(document).ready(function () {
 
     $(".close-container-product-secifications").click(function () {
         $(".bg-container-product-secifications").fadeOut(700);
+    });
+    $(".bg-container-product-secifications").click(function () {
+        $(".container-product-secifications").click(function () {
+            $(".bg-container-product-secifications").fadeIn(700);
+        })
+        $(".bg-container-product-secifications").fadeOut(700);
+    });
 
-    })
+    $("#customers .text-show-more").click(function () {
 
+    });
 });
 
 let lastScrollSize, oneToTheLastScrollSize;
