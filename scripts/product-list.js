@@ -2,19 +2,19 @@ let boxContainer = [
     {
         whatBox: "shirt",
         whatTitleBox: "لباس های <br> ایمن کارکو",
-        icon: "/images/icons/shirt.png",
+        icon: "images/icons/shirt.png",
 
     },
     {
         whatBox: "hat",
         whatTitleBox: "کلاه های <br> ایمن کارکو",
-        icon: "/images/icons/hat.png",
+        icon: "images/icons/hat.png",
 
     },
     {
         whatBox: "shoes",
         whatTitleBox: "کفش های <br> ایمن کارکو",
-        icon: "/images/icons/smart-shoe.png",
+        icon: "images/icons/smart-shoe.png",
     },
 ]
 
@@ -487,7 +487,7 @@ let customersLogo = [
     {
         id: 5,
         className: "pouyesh-pajouhan",
-        imgSrc: "images/logo/Pouyesh-pajouhan-logo.png"
+        imgSrc: "images/logo/Pouyesh-Pajouhan-logo.png"
     },
     {
         id: 6,
