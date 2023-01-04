@@ -25,42 +25,42 @@
 
 <body>
     <!-- Header Site -->
-    <div class="top-site container-fluid">
-        <header id="header">
-            <div class="row">
-                <div class="logo col-3">
-                    <a href="#"><img src="images/logo/logo.png" alt="Imen-Karco Logo"></a>
-                </div>
-                <div class="menu-btn open-menu col-9">
-                    <i class="fas fa-bars btn-icon open"></i>
-                </div>
-                <div class="slide-nav col-md-9 col-12">
-                    <div class="row">
-                        <nav id="nav">
-                            <ul>
-                                <li class="click-home-page"><a class="btn-home-page"><i class="fas fa-home"></i>صفحه
-                                        اصلی</a></li>
-                                <li class="scroll-to-product"><a class="btn-products"><i
-                                            class="fas fa-store"></i>محصولات</a>
-                                </li>
-                                <li class="click-info"><a class="btn-info"><i class="fas fa-info-circle"></i>درباره
-                                        ما</a></li>
-                                <li class="click-phone"><a class="btn-phone"><i class="fas fa-phone"></i>تماس با ما</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <div id="container-header-image">
-            <div src="images/header-image.png" class="bg-pattern"></div>
-            <div id="container-scroll-down" class="scroll-to-product container-fluid">
-                <span class="text-scroll-down">Scroll Down</span>
-                <i class="fa-solid fa-angles-down scroll-down-btn"></i>
+
+    <nav id="nav" class="navbar navbar-expand-md bg-light navbar-light fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="#" class="logo navbar-brand">
+                <img src="images/logo/logo.png" alt="Imen-Karco Logo" class="rounded-pill">
+            </a>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="click-home-page nav-item"><a class="btn-home-page nav-link"><i
+                                class="fas fa-home"></i>صفحه
+                            اصلی</a></li>
+                    <li class="scroll-to-product nav-item"><a class="btn-products nav-link"><i
+                                class="fas fa-store"></i>محصولات</a>
+                    </li>
+                    <li class="click-info nav-item">
+                        <a class="btn-info nav-link">
+                            <i class="fas fa-info-circle"></i>درباره ما</a>
+                    </li>
+                    <li class="click-phone nav-item"><a class="btn-phone nav-link"><i class="fas fa-phone"></i>تماس با
+                            ما</a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
+    <div id="container-header-image" class="container-fluid">
+        <div src="images/header-image.png" class="bg-pattern"></div>
+        <div id="container-scroll-down" class="scroll-to-product">
+            <span class="text-scroll-down ">Scroll Down</span>
+            <i class="fa-solid fa-angles-down scroll-down-btn"></i>
+        </div>
     </div>
+
 
     <!-- section products -->
     <section id="product" class="container-fluid Products" data-aos="fade-up" data-aos-duration="1500">
@@ -154,6 +154,10 @@
         <div class="copy-right"> تمامی حقوق برای ایمن کارکو محفوظ است <i class="far fa-registered"></i></div>
     </footer>
 
+    <button type="button" class="btn btn-secondary btn-floating" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <!-- section show secifications product -->
     <div class="bg-container-product-secifications container-fluid">
         <section class="container-product-secifications">
@@ -161,15 +165,15 @@
                     class="fas fa-close"></i></button>
             <div class="items row">
                 <div class="product-image col-md-6 col-12">
-                    <div class="row">
+                    <div class="main row">
                         <img class="main-image col-lg-7 col-md-9 col-11" src="" alt="">
                     </div>
                     <div class="row">
                         <div class="more-image">
-                            <img class="btn bottom-image col-2" src="" alt="">
-                            <img class="btn bottom-image col-2" src="" alt="">
-                            <img class="btn bottom-image col-2" src="" alt="">
-                            <img class="btn bottom-image col-2" src="" alt="">
+                            <img onclick="changeMainImage()" class="btn bottom-image image-1 col-2" src="" alt="">
+                            <img onclick="changeMainImage()" class="btn bottom-image image-2 col-2" src="" alt="">
+                            <img onclick="changeMainImage()" class="btn bottom-image image-3 col-2" src="" alt="">
+                            <img onclick="changeMainImage()" class="btn bottom-image image-4 col-2" src="" alt="">
                         </div>
                     </div>
                 </div>

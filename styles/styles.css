@@ -40,84 +40,47 @@ body {
 }
 
 /* Header */
-
-.top-site {
-    direction: ltr;
-    background-color: #fff;
+.logo {
+    position: absolute;
+    top: 0px;
+    left: 20px;
 }
 
-#header {
-    width: 100%;
-    background-color: #fff;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 10;
-    box-shadow: 0px -9px 20px 9px rgba(0, 0, 0, 0.34);
-}
-
-#header .logo {
-    padding: 5px 20px;
-    height: 65px;
-}
-
-#header .logo img {
+.logo img {
     height: 65px;
 }
 
 /* Navigation */
 
 #nav {
-    direction: rtl;
-}
-
-#nav ul li {
-    margin-top: 15px;
-    display: inline-block;
-    padding: 7px 0;
-    margin-right: 3px;
+    box-shadow: 0px -9px 20px 9px rgba(0, 0, 0, 0.34);
 }
 
 #nav ul li a {
-    padding: 16px 8px;
+    padding: 16px 11px;
     text-decoration: none;
     color: #454952;
     font-weight: bold;
     font-size: 18px;
-    transition: 0.5s;
-    border-bottom: 6px solid #45495200;
+    transition: 0.25s;
 }
 
 #nav ul li a:hover {
-    border-bottom: 6px solid #454952;
+    opacity: 0.6;
     cursor: pointer;
 }
 
 #nav ul li svg {
     color: #454952;
-    font-size: 27px;
-    margin-left: 8px;
-    vertical-align: -6px;
-}
-
-#nav ul li .fa-phone,
-#nav ul li .fa-store {
     font-size: 24px;
-}
-
-.menu-btn {
-    display: none;
-}
-
-.menu-btn svg:hover {
-    cursor: pointer;
+    margin-left: 8px;
+    vertical-align: -5px;
 }
 
 /* Image Baner */
 #container-header-image {
-    width: 110%;
-    position: relative;
-    right: 12px;
+    width: 100%;
+    text-align: center;
     background-color: #000000;
 }
 
@@ -130,9 +93,11 @@ body {
 }
 
 #container-scroll-down {
-    text-align: center;
+    height: 100px;
     position: absolute;
-    top: 540px;
+    top: 570px;
+    left: 50%;
+    transform: translate(-50%, -50%);
     user-select: none;
     display: block;
 }
@@ -581,6 +546,18 @@ body {
     font-size: 17px;
 }
 
+/* btn back to top styles */
+#btn-back-to-top {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: none;
+    font-size: 23px;
+}
+
 /* secisecifications product styles */
 .bg-container-product-secifications {
     overflow: auto;
@@ -650,31 +627,8 @@ body {
 
 /* responsive */
 @media only screen and (max-width:992px) {
-    #nav {
-        margin-top: -5px;
-        padding-bottom: 0;
-    }
-
-    #nav ul li {
-        padding: 6px 3px;
-    }
-
-    #nav ul li a {
-        font-size: 15px;
-        padding: 20px 7px;
-    }
-
-    #nav ul li svg {
-        font-size: 22px;
-    }
-
-    #nav ul li .fa-phone,
-    #nav ul li .fa-store {
-        font-size: 20px;
-    }
-
-    #header .logo img {
-        height: 55px;
+    .logo img {
+        height: 60px;
     }
 
     .bg-pattern {
@@ -705,65 +659,13 @@ body {
 }
 
 @media only screen and (max-width:768px) {
-    #header {
-        height: 55px;
-        text-align: left;
-    }
-
-    #header .logo img {
+    .logo img {
         margin-left: 2%;
         height: 45px;
     }
 
     #container-scroll-down {
         display: none;
-    }
-
-    #nav {
-        direction: rtl;
-        text-align: right;
-    }
-
-    #nav ul li {
-        display: block;
-    }
-
-    #nav ul li a {
-        border-bottom: none;
-    }
-
-    #nav ul li a:hover {
-        border-bottom: none;
-    }
-
-    .slide-nav {
-        background-color: #fff;
-        width: 100%;
-        height: fit-content;
-        position: fixed;
-        right: 0px;
-        top: 53px;
-        display: none;
-        box-shadow: 0px 20px 24px -10px rgba(0, 0, 0, 0.75);
-    }
-
-    .slide-nav .close-slide-nav {
-        background-color: #a0a0a0;
-        padding: 9px 20px;
-        font-size: 25px;
-    }
-
-    .menu-btn {
-        text-align: right;
-        display: inline-block;
-        position: relative;
-        right: 3%;
-        top: 10px;
-        font-size: 27px;
-    }
-
-    .menu-btn .fa-xmark {
-        padding-right: 5px;
     }
 
     #container-header-image {
@@ -827,7 +729,7 @@ body {
 }
 
 @media only screen and (max-width:455px) {
-    #header .logo img {
+    .logo img {
         height: 45px;
     }
 

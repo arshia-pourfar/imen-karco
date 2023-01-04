@@ -1,3 +1,4 @@
+var postItemClick;
 $(document).ready(function () {
     (function () {
         for (let i = 0; i < boxContainer.length; i++) {
@@ -39,9 +40,7 @@ $(document).ready(function () {
         scrollToItemSelect("footer");
     });
 
-    $(".menu-btn").click(function () {
-        $(".slide-nav").toggle(600);
-        $(".slide-nav").toggleClass("col-12 col-12");
+    $(".navbar-toggler svg").click(function () {
         $(".menu-btn").toggleClass("open-menu close-menu");
         $(".menu-btn svg").toggleClass("fa-xmark fa-bars");
     });
@@ -70,26 +69,32 @@ $(document).ready(function () {
         checkScrollBox("shoes", "right");
     });
 
-    $("#footer .item-about-us .read-more p").click(function () {
-        $("#footer .item-about-us .read-more p").css("visibility", "hidden");
-        $("#footer .item-about-us .read-more").css("visibility", "hidden");
-        $("#footer .fade-text").css("visibility", "hidden");
-    });
-
-    $(".close-container-product-secifications").click(function () {
-        $(".bg-container-product-secifications").fadeOut(700);
-    });
-    $(".bg-container-product-secifications").click(function () {
-        $(".container-product-secifications").click(function () {
-            $(".bg-container-product-secifications").fadeIn(700);
-        })
+    $(".container-product-secifications .close-container-product-secifications").click(function () {
         $(".bg-container-product-secifications").fadeOut(700);
     });
 
-    $("#customers .text-show-more").click(function () {
-
+    $(window).scroll(function () {
+        if ($(this).scrollTop() >= 200) {
+            $("#btn-back-to-top").fadeIn(400);
+        } else {
+            $("#btn-back-to-top").fadeOut(400);
+        }
     });
+
+    $("#btn-back-to-top").click(function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
 });
+function changeMainImage() {
+    if ($(".container-product-secifications .more-image .bottom-image").hasClass("image-1")) {
+        $(".container-product-secifications .product-image .main").html(`<img class="main-image col-lg-7 col-md-9 col-11" src="` + allProduct[postItemClick].bottomImage1 + `" alt="">`);
+        $(".container-product-secifications .more-image").html(`<img onclick="changeMainImage()" class="btn bottom-image col-2" src="` + allProduct[postItemClick].mainImage + `" alt="">`);
+    } else {
+        $(".container-product-secifications .product-image .main").html(`<img class="main-image col-lg-7 col-md-9 col-11" src="` + allProduct[postItemClick].mainImage + `" alt="">`);
+        $(".container-product-secifications .more-image").html(`<img onclick="changeMainImage()" class="btn bottom-image image-1 col-2" src="` + allProduct[postItemClick].bottomImage1 + `" alt="">`);
+    }
+}
 
 let lastScrollSize, oneToTheLastScrollSize;
 function checkScrollBox(product, direction) {
@@ -122,7 +127,7 @@ function checkScrollBox(product, direction) {
 function addProductToBox() {
     for (let selectProducts = 0; selectProducts < allProduct.length; selectProducts++) {
         document.getElementById("box-post-" + allProduct[selectProducts].category + "").innerHTML += `
-            <article onclick="getIdItemClicked(`+ allProduct[selectProducts].id + `);" class="post-item col-lg-2 col-md-3 col-4">
+            <article onclick="getIdItemClicked(` + allProduct[selectProducts].id + `);" class="post-item col-lg-2 col-md-3 col-4">
                 <div class="post-image">
                     <img src="`+ allProduct[selectProducts].imgSrc + `" alt="">
                 </div>
@@ -166,12 +171,13 @@ function scrollToItemSelect(item) {
 
 
 function getIdItemClicked(id) {
+    postItemClick = id;
     $(".bg-container-product-secifications").fadeIn(800);
     $(".container-product-secifications .main-image").attr("src", "" + allProduct[id].mainImage + "");
-    $(".container-product-secifications .more-image .bottom-image").attr("src", "" + allProduct[id].bottomImage1 + "");
-    $(".container-product-secifications .more-image .bottom-image").attr("src", "" + allProduct[id].bottomImage2 + "");
-    $(".container-product-secifications .more-image .bottom-image").attr("src", "" + allProduct[id].bottomImage3 + "");
-    $(".container-product-secifications .more-image .bottom-image").attr("src", "" + allProduct[id].bottomImage4 + "");
+    $(".container-product-secifications .more-image .image-1").attr("src", "" + allProduct[id].bottomImage1 + "");
+    $(".container-product-secifications .more-image .image-2").attr("src", "" + allProduct[id].bottomImage2 + "");
+    $(".container-product-secifications .more-image .image-3").attr("src", "" + allProduct[id].bottomImage3 + "");
+    $(".container-product-secifications .more-image .image-4").attr("src", "" + allProduct[id].bottomImage4 + "");
     $(".container-product-secifications .product-secifications .title").text(allProduct[id].title);
     $(".container-product-secifications .product-secifications .material").text(" تست : " + allProduct[id].material);
     $(".container-product-secifications .product-secifications .description").text(" توضیحات : " + allProduct[id].description);
