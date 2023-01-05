@@ -40,11 +40,6 @@ $(document).ready(function () {
         scrollToItemSelect("footer");
     });
 
-    $(".navbar-toggler svg").click(function () {
-        $(".menu-btn").toggleClass("open-menu close-menu");
-        $(".menu-btn svg").toggleClass("fa-xmark fa-bars");
-    });
-
     $("#scroll-left-post-shirt").click(function () {
         checkScrollBox("shirt", "left");
     });
@@ -86,15 +81,6 @@ $(document).ready(function () {
     });
 
 });
-function changeMainImage() {
-    if ($(".container-product-secifications .more-image .bottom-image").hasClass("image-1")) {
-        $(".container-product-secifications .product-image .main").html(`<img class="main-image col-lg-7 col-md-9 col-11" src="` + allProduct[postItemClick].bottomImage1 + `" alt="">`);
-        $(".container-product-secifications .more-image").html(`<img onclick="changeMainImage()" class="btn bottom-image col-2" src="` + allProduct[postItemClick].mainImage + `" alt="">`);
-    } else {
-        $(".container-product-secifications .product-image .main").html(`<img class="main-image col-lg-7 col-md-9 col-11" src="` + allProduct[postItemClick].mainImage + `" alt="">`);
-        $(".container-product-secifications .more-image").html(`<img onclick="changeMainImage()" class="btn bottom-image image-1 col-2" src="` + allProduct[postItemClick].bottomImage1 + `" alt="">`);
-    }
-}
 
 let lastScrollSize, oneToTheLastScrollSize;
 function checkScrollBox(product, direction) {
@@ -171,13 +157,11 @@ function scrollToItemSelect(item) {
 
 
 function getIdItemClicked(id) {
-    postItemClick = id;
     $(".bg-container-product-secifications").fadeIn(800);
-    $(".container-product-secifications .main-image").attr("src", "" + allProduct[id].mainImage + "");
-    $(".container-product-secifications .more-image .image-1").attr("src", "" + allProduct[id].bottomImage1 + "");
-    $(".container-product-secifications .more-image .image-2").attr("src", "" + allProduct[id].bottomImage2 + "");
-    $(".container-product-secifications .more-image .image-3").attr("src", "" + allProduct[id].bottomImage3 + "");
-    $(".container-product-secifications .more-image .image-4").attr("src", "" + allProduct[id].bottomImage4 + "");
+    $(".container-product-secifications .product-image .carousel-inner .image-1 img").attr("src", "" + allProduct[id].bottomImage1 + "");
+    $(".container-product-secifications .product-image .carousel-inner .image-2 img").attr("src", "" + allProduct[id].bottomImage2 + "");
+    $(".container-product-secifications .product-image .carousel-inner .image-3 img").attr("src", "" + allProduct[id].bottomImage3 + "");
+    $(".container-product-secifications .product-image .carousel-inner .image-4 img").attr("src", "" + allProduct[id].bottomImage4 + "");
     $(".container-product-secifications .product-secifications .title").text(allProduct[id].title);
     $(".container-product-secifications .product-secifications .material").text(" تست : " + allProduct[id].material);
     $(".container-product-secifications .product-secifications .description").text(" توضیحات : " + allProduct[id].description);
