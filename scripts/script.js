@@ -151,7 +151,7 @@ function scrollToItemSelect(item) {
     if (item == "product") {
         window.scrollTo({ top: elementScroll + 50, behavior: 'smooth' });
     } else {
-        window.scrollTo({ top: elementScroll - 50, behavior: 'smooth' });
+        window.scrollTo({ top: elementScroll - 80, behavior: 'smooth' });
     }
 }
 
