@@ -64,10 +64,6 @@ $(document).ready(function () {
         checkScrollBox("shoes", "right");
     });
 
-    $(".container-product-secifications .close-container-product-secifications").click(function () {
-        $(".bg-container-product-secifications").fadeOut(700);
-    });
-
     $(window).scroll(function () {
         if ($(this).scrollTop() >= 200) {
             $("#btn-back-to-top").fadeIn(400);
@@ -113,7 +109,7 @@ function checkScrollBox(product, direction) {
 function addProductToBox() {
     for (let selectProducts = 0; selectProducts < allProduct.length; selectProducts++) {
         document.getElementById("box-post-" + allProduct[selectProducts].category + "").innerHTML += `
-            <article onclick="getIdItemClicked(` + allProduct[selectProducts].id + `);" class="post-item col-lg-2 col-md-3 col-4">
+            <article onclick="getIdItemClicked(` + allProduct[selectProducts].id + `);" data-bs-toggle="modal" data-bs-target="#myModal" class="post-item col-lg-2 col-md-3 col-4">
                 <div class="post-image">
                     <img src="`+ allProduct[selectProducts].imgSrc + `" alt="">
                 </div>
@@ -157,12 +153,11 @@ function scrollToItemSelect(item) {
 
 
 function getIdItemClicked(id) {
-    $(".bg-container-product-secifications").fadeIn(800);
-    $(".container-product-secifications .product-image .carousel-inner .image-1 img").attr("src", "" + allProduct[id].bottomImage1 + "");
-    $(".container-product-secifications .product-image .carousel-inner .image-2 img").attr("src", "" + allProduct[id].bottomImage2 + "");
-    $(".container-product-secifications .product-image .carousel-inner .image-3 img").attr("src", "" + allProduct[id].bottomImage3 + "");
-    $(".container-product-secifications .product-image .carousel-inner .image-4 img").attr("src", "" + allProduct[id].bottomImage4 + "");
-    $(".container-product-secifications .product-secifications .title").text(allProduct[id].title);
-    $(".container-product-secifications .product-secifications .material").text(" تست : " + allProduct[id].material);
-    $(".container-product-secifications .product-secifications .description").text(" توضیحات : " + allProduct[id].description);
+    $(".product-image .carousel-inner .image-1 img").attr("src", "" + allProduct[id].bottomImage1 + "");
+    $(".product-image .carousel-inner .image-2 img").attr("src", "" + allProduct[id].bottomImage2 + "");
+    $(".product-image .carousel-inner .image-3 img").attr("src", "" + allProduct[id].bottomImage3 + "");
+    $(".product-image .carousel-inner .image-4 img").attr("src", "" + allProduct[id].bottomImage4 + "");
+    $(".title").text(allProduct[id].title);
+    $(".product-secifications .material").text(" تست : " + allProduct[id].material);
+    $(".product-secifications .description").text(" توضیحات : " + allProduct[id].description);
 }
