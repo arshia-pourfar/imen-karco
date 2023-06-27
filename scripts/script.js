@@ -76,6 +76,8 @@ $(document).ready(function () {
     $("#btn-back-to-top").click(function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+
 });
 
 let lastScrollSize, oneToTheLastScrollSize;
@@ -142,7 +144,11 @@ function addObjects() {
     }
 }
 
+
 function scrollToItemSelect(item) {
+    $('.navbar-collapse').removeClass('show');
+    $('.navbar-toggler').removeClass('opened');
+    $('.navbar-toggler').addClass('collapsed');
     let elementScroll = document.getElementById(item).offsetTop;
     if (item == "product") {
         window.scrollTo({ top: elementScroll + 50, behavior: 'smooth' });
