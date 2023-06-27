@@ -41,7 +41,7 @@ body {
 
 /* Header */
 .logo img {
-    height: 65px;
+    max-height: 60px;
 }
 
 /* Navigation */
@@ -54,22 +54,24 @@ body {
 
 #nav ul {
     direction: rtl;
-    position: absolute;
+    position: relative;
     right: 10px;
 }
 
 #nav ul li a {
-    padding: 16px 8px;
+    padding: 15px 8px;
     text-decoration: none;
     color: #454952;
     font-weight: bold;
     font-size: 17px;
     transition: 0.25s;
+    border-bottom: 3px solid #00000000;
 }
 
 #nav ul li a:hover {
-    opacity: 0.6;
+    opacity: 0.8;
     cursor: pointer;
+    border-bottom: 3px solid #000000;
 }
 
 #nav ul li svg {
@@ -210,7 +212,7 @@ body {
 
 .Products .title-post-header {
     width: fit-content;
-    margin: 200px auto 10px auto;
+    margin: 150px auto 10px auto;
     color: #3e3eff;
     font-size: 25px;
     border-bottom: 4px solid orange;
@@ -245,7 +247,7 @@ body {
 .Products .hat,
 .Products .shoes {
     border-radius: 7px;
-    margin-top: 70px;
+    margin-top: 50px;
     box-sizing: border-box;
     padding: 0px 10px 0 10%;
 }
@@ -341,8 +343,8 @@ body {
     user-select: auto;
     width: fit-content;
     margin: auto;
-    margin-top: 190px;
-    margin-bottom: 120px;
+    margin-top: 100px;
+    margin-bottom: 40px;
     padding: 15px 25px;
     font-size: 25px;
     color: #3e3eff;
@@ -357,8 +359,15 @@ body {
 #whyus .posts .post-item {
     border-radius: 20px;
     padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    margin: 10px 0;
+    box-shadow: 0 3px 10px 0 rgb(0 0 0 / 25%);
+    transition: 0.5s;
+    height: 350px;
+    cursor: pointer;
+}
+
+#whyus .posts .post-item:hover {
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.349);
 }
 
 #whyus .posts .title-post {
@@ -504,20 +513,24 @@ body {
 }
 
 #footer .ways-of-communication img {
-    width: 75px;
-    height: 75px;
+    width: 70px;
+    height: 70px;
     color: rgb(224, 224, 224);
     transition: 0.30s;
 }
 
 #footer .ways-of-communication .instagram {
-    width: 85px;
-    height: 85px;
+    width: 80px;
+    height: 80px;
     margin-top: -5px;
 }
 
 #footer .ways-of-communication .instagram:hover {
     margin-top: -15px;
+}
+
+#footer .container-number-call {
+    vertical-align: -20px;
 }
 
 #footer .ways-of-communication .whatsapp:hover,
@@ -526,64 +539,7 @@ body {
     margin-top: -10px;
 }
 
-#footer .container-number-call {
-    margin: 30px 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-}
-
-#footer .fa-phone {
-    font-size: 25px;
-    color: #fff;
-    float: right;
-}
-
-#footer .fa-mobile-retro {
-    width: 40px;
-    height: 50px;
-    float: right;
-    margin-top: -10px;
-}
-
-#footer .number-phone-call {
-    float: left;
-    color: #fff;
-    padding: 40px 20px;
-    direction: ltr;
-    flex-basis: 100%;
-}
-
-#footer .number-mobile-call {
-    float: left;
-    padding: 0px 15px 0 20px;
-    color: #fff;
-    direction: ltr;
-    flex-basis: 100%;
-    margin-top: 10px;
-}
-
-#footer .number-for-retail {
-    width: 100%;
-    color: #fff;
-    position: relative;
-    top: 30px;
-    left: 20px;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-#footer .number-for-retail svg {
-    margin-right: 37px;
-    font-size: 31px;
-    float: right;
-}
-
 /* ADDRES STYLES */
-
 #footer .addres .footer-content {
     text-align: center;
     color: #cecece;
@@ -602,7 +558,6 @@ body {
 
 
 /* COPY RIGHT */
-
 #footer .copy-right {
     color: #fff;
     text-align: center;

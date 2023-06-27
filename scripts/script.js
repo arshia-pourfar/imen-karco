@@ -20,7 +20,7 @@ $(document).ready(function () {
                     </div>
                 </div>`;
             if (i == boxContainer.length - 1) {
-                addProductToBox();
+                addObjects();
             }
         }
     }());
@@ -106,7 +106,7 @@ function checkScrollBox(product, direction) {
     });
 }
 
-function addProductToBox() {
+function addObjects() {
     for (let selectProducts = 0; selectProducts < allProduct.length; selectProducts++) {
         document.getElementById("box-post-" + allProduct[selectProducts].category + "").innerHTML += `
             <article onclick="getIdItemClicked(` + allProduct[selectProducts].id + `);" data-bs-toggle="modal" data-bs-target="#myModal" class="post-item col-lg-2 col-md-3 col-4 shadow">
