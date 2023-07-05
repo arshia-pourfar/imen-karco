@@ -1,142 +1,219 @@
-var postItemClick;
-let checkMenuIcon = false;
 $(document).ready(function () {
     (function () {
         for (let i = 0; i < boxContainer.length; i++) {
-            document.querySelector(".Products .row").innerHTML += `
-                <div class="`+ boxContainer[i].whatBox + ` col-11 container" data-aos="zoom-in-up" data-aos-duration="2000">
-                    <div class="row">
-                        <div class="about-container-post col-md-2 col-3">
-                            <img src="`+ boxContainer[i].icon + `" class="icon-product-box col-12">
-                            <span class="text col-12">`+ boxContainer[i].whatTitleBox + `</span>
-                        </div>
-                        <div class="post-container col-md-10 col-9">
-                            <button class="scroll-left-post" id="scroll-left-post-`+ boxContainer[i].whatBox + `">
-                                <i class="fas fa-arrow-left"></i></button>
-                            <button class="scroll-right-post" id="scroll-right-post-`+ boxContainer[i].whatBox + `">
-                                <i class="fas fa-arrow-right"></i></button>
-                            <div class="post" id="box-post-`+ boxContainer[i].whatBox + `"></div>
-                        </div>
+            document.querySelector("#product .container-product-slider").innerHTML += `
+            <div class="rpd-slider" data-base-width="340">
+            <div class="box-title mb-3">
+                        <h5 class="d-inline-block post-title">`+ boxContainer[i].whatTitleBox + `</h5>
+                        <img src="`+ boxContainer[i].icon + `" alt="smdkc">
                     </div>
-                </div>`;
+                <div class="main-wrapper">
+                    <ul class="rpd-slider-wrapper `+ boxContainer[i].whatBox + `">
+                    </ul>
+                    <div class="rpd-slider-navs">
+                        <div class="nav-element previous" data-step="previous">&#10094;</div>
+                        <div class="nav-element next" data-step="next">&#10095;</div>
+                    </div>
+                </div>
+            </div>`;
             if (i == boxContainer.length - 1) {
                 addObjects();
             }
         }
     }());
 
-    $(".click-home-page").click(function () {
-        window.location = "index.html";
-    });
+    // header animates
+    $('.container-header-image .list1').animate({ right: "10px", rotate: "0deg" }, 1000);
 
     $(".scroll-to-product").click(function () {
-        scrollToItemSelect("product");
-    });
-
-    $(".click-info").click(function () {
-        scrollToItemSelect("footer");
+        scrollToItem("product");
     });
 
     $(".click-phone").click(function () {
-        scrollToItemSelect("footer");
-    });
-
-    $("#scroll-left-post-shirt").click(function () {
-        checkScrollBox("shirt", "left");
-    });
-
-    $("#scroll-right-post-shirt").click(function () {
-        checkScrollBox("shirt", "right");
-    });
-
-    $("#scroll-left-post-hat").click(function () {
-        checkScrollBox("hat", "left");
-    });
-
-    $("#scroll-right-post-hat").click(function () {
-        checkScrollBox("hat", "right");
-    });
-
-    $("#scroll-left-post-shoes").click(function () {
-        checkScrollBox("shoes", "left");
-    });
-
-    $("#scroll-right-post-shoes").click(function () {
-        checkScrollBox("shoes", "right");
-    });
-
-    $(window).scroll(function () {
-        if ($(this).scrollTop() >= 200) {
-            $("#btn-back-to-top").fadeIn(400);
-        } else {
-            $("#btn-back-to-top").fadeOut(400);
-        }
+        scrollToItem("footer");
     });
 
     $("#btn-back-to-top").click(function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    pageSize();
+    $(window).resize(function () {
+        pageSize();
+    });
 
+    // carousel slider for product
+    function navigationHandler() {
+        const thisElement = $(this);
+        const navs = thisElement.parent().find(".nav-element");
+
+        if (thisElement.hasClass("disabled")) {
+            return;
+        }
+
+        var enableNavAllElement = function () {
+            navs.removeClass("disabled");
+        }
+
+        var disableNavCurrentElement = function () {
+            enableNavAllElement();
+            thisElement.addClass("disabled");
+        }
+
+
+        const thisElementMainParent = thisElement.parents(".rpd-slider");
+        const thisElementSliderWrapper = thisElementMainParent.find(".rpd-slider-wrapper");
+        const thisElementSliderChildren = $(thisElementSliderWrapper.children());
+
+        const step = thisElement.attr("data-step");
+        let currentScrollLeft = thisElementSliderWrapper.scrollLeft();
+        let rateScrollLeft = parseInt(thisElementMainParent.attr("data-base-width"));
+        let animation_rateScrollLeft = 5;
+
+        const childrenCount = thisElementSliderChildren.length;
+        const oldActiveChild = thisElementSliderWrapper.find(".active-child").first();
+        let currentChildIndex = parseInt(oldActiveChild.attr("data-index"));
+
+        for (const element of thisElementSliderChildren) {
+            $(element).removeClass("active-child").removeClass("active-complete");
+        }
+
+        if (step == "previous") {
+            rateScrollLeft = rateScrollLeft * -1;
+            animation_rateScrollLeft = animation_rateScrollLeft * -1;
+            currentChildIndex--;
+
+        } else if (step == "next") {
+            rateScrollLeft = rateScrollLeft * 1;
+            animation_rateScrollLeft = animation_rateScrollLeft * 1;
+            currentChildIndex++;
+        }
+
+        let isDisableState = false;
+
+        if (currentChildIndex == 0 || currentChildIndex == (childrenCount - 1)) {
+            disableNavCurrentElement();
+            isDisableState = true;
+        }
+
+        if (currentChildIndex < 0 || (childrenCount - 1) < currentChildIndex) {
+            return;
+        }
+
+        if (!isDisableState)
+            enableNavAllElement();
+
+        const currentActiveChild = $(thisElementSliderChildren[currentChildIndex]);
+        currentActiveChild.addClass("active-child");
+
+        let finalScrollLeft = (currentScrollLeft) + (rateScrollLeft);
+
+
+        var interval = setInterval(() => {
+
+            var clearIntervalAction = false;
+
+            currentScrollLeft = thisElementSliderWrapper.scrollLeft();
+            let currentScrollLeft_toBe = (currentScrollLeft) + (animation_rateScrollLeft);
+
+            if ((finalScrollLeft < currentScrollLeft_toBe && step == "next") || currentScrollLeft_toBe < finalScrollLeft && step == "previous") {
+                currentScrollLeft_toBe = finalScrollLeft;
+                const beforeChildScrollX = currentActiveChild.prev().attr('data-scroll-x');
+                if (beforeChildScrollX) {
+                    currentScrollLeft_toBe = parseInt(beforeChildScrollX) + Math.abs(rateScrollLeft);
+                }
+                if (!currentActiveChild.attr("data-scroll-x"))
+                    currentActiveChild.attr("data-scroll-x", currentScrollLeft_toBe);
+
+                clearIntervalAction = true;
+            }
+
+            thisElementSliderWrapper.scrollLeft(currentScrollLeft_toBe);
+
+            currentScrollLeft = thisElementSliderWrapper.scrollLeft();
+
+            if (window['currentScrollLeftSilder'] == currentScrollLeft) {
+                if (!window['duplicateScrollLeftSilder']) {
+                    window['duplicateScrollLeftSilder'] = 0;
+                }
+
+                window['duplicateScrollLeftSilder'] += 1;
+
+                if (3 <= window['duplicateScrollLeftSilder']) {
+                    clearIntervalAction = true;
+                    window['duplicateScrollLeftSilder'] = 0;
+                }
+            }
+
+            window['currentScrollLeftSilder'] = currentScrollLeft;
+
+            if (clearIntervalAction || finalScrollLeft == currentScrollLeft) {
+                if (clearIntervalAction) thisElementSliderWrapper.scrollLeft(currentScrollLeft_toBe);
+                currentActiveChild.addClass("active-complete")
+                clearInterval(interval);
+            }
+        }, 1);
+    }
+
+    const slidersList = $(".rpd-slider");
+    for (let elementMain of slidersList) {
+        elementMain = $(elementMain);
+
+        const sliderMain = elementMain;
+        const sliderWrapper = sliderMain.find(".rpd-slider-wrapper");
+        const sliderChildren = $(sliderWrapper.children());
+        const navs = sliderMain.find(".rpd-slider-navs .nav-element");
+
+        const baseWidthSlider = parseInt(sliderMain.attr("data-base-width"));
+
+        navs.on("click", navigationHandler);
+
+        if (sliderChildren.length) {
+            $(sliderChildren[0]).addClass("active-child active-complete");
+            var i = 0;
+            for (const element of sliderChildren) {
+                $(element).attr("data-index", i).addClass("slide-child-element").css("width", baseWidthSlider + "px");
+                i++;
+            }
+        }
+
+        sliderMain.find(".main-wrapper").css("max-width", (baseWidthSlider + 50) + "px");
+        sliderWrapper.css("max-width", (baseWidthSlider) + "px");
+
+        sliderMain.find(".nav-element.previous").addClass("disabled");
+    }
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() >= 300) {
+            $("#btn-back-to-top").fadeIn(400);
+        } else {
+            $("#btn-back-to-top").fadeOut(400);
+        }
+    });
 });
 
-let lastScrollSize, oneToTheLastScrollSize;
-function checkScrollBox(product, direction) {
-    let oppositeDirection, minusOrPlusLeftScroll;
-    if (direction == "left") {
-        oppositeDirection = "right";
-        minusOrPlusLeftScroll = "-";
-
-    } else if (direction == "right") {
-        oppositeDirection = "left";
-        minusOrPlusLeftScroll = "+";
-    }
-    $("#box-post-" + product + "").animate({
-        scrollLeft: "" + minusOrPlusLeftScroll + "=250"
-    }, 10, function () {
-        lastScrollSize = $("#box-post-" + product + "").scrollLeft();
-        if (lastScrollSize == oneToTheLastScrollSize) {
-            $("#scroll-left-post-" + product + "").css("visibility", "hidden");
-        } else if (lastScrollSize != oneToTheLastScrollSize) {
-            oneToTheLastScrollSize = lastScrollSize;
-        }
-        if ($("#box-post-" + product + "").scrollLeft() >= -0.9) {
-            oneToTheLastScrollSize = -0.9;
-            $("#scroll-right-post-" + product + "").css("visibility", "hidden");
-        }
-        $("#scroll-" + oppositeDirection + "-post-" + product + "").css("visibility", "visible");
-    });
+function pageSize() {
+    pageHeight = $(window).height();
+    $('.header-image').css('height', pageHeight);
 }
 
 function addObjects() {
-    for (let selectProducts = 0; selectProducts < allProduct.length; selectProducts++) {
-        document.getElementById("box-post-" + allProduct[selectProducts].category + "").innerHTML += `
-            <article onclick="getIdItemClicked(` + allProduct[selectProducts].id + `);" data-bs-toggle="modal" data-bs-target="#myModal" class="post-item col-lg-2 col-md-3 col-4 shadow">
-                <div class="post-image">
-                    <img src="`+ allProduct[selectProducts].imgSrc + `" alt="">
-                </div>
-                <div class="post-content">
-                    <p class='mt-2 mb-2'>`+ allProduct[selectProducts].title + `</p>
-                </div>
-            </article>`
+    for (let i = 0; i < allProduct.length; i++) {
+        document.querySelector(".main-wrapper ." + allProduct[i].category + "").innerHTML += `
+        <li onclick="setIdProduct(`+ allProduct[i].id + `)" data-bs-toggle="modal" data-bs-target="#myModal"><a href="product.html"><img class="rounded-1" src="` + allProduct[i].imgSrc + `" alt=""></a></li>`
     }
     for (let i = 0; i < customersLogo.length; i++) {
-        document.querySelector(".logo-image").innerHTML += `
-            <img class="col-lg-1 col-sm-2 col-3 ` + customersLogo[i].className + `" src=" ` + customersLogo[i].imgSrc + `">
+        document.querySelector("#customers .logo-image").innerHTML += `
+            <img class="` + customersLogo[i].className + `" src=" ` + customersLogo[i].imgSrc + `">
         `;
     }
     for (let i = 0; i < whyus.length; i++) {
-        document.querySelector(".posts-container").innerHTML += `
-                <article class="posts col-lg-4 col-md-6 col-6">
+        document.querySelector(".posts-container .row").innerHTML += `
+                <article class="posts col-lg-2 col-6">
                     <div class="post-item">
-                        <div class="icon-post container">
-                            <div class="row">
-                                <img class="icon col-md-4" src="`+ whyus[i].imgSrc + `">
-                                <div class="title-post col-md-8 col-12">`+ whyus[i].postTitle + `</div>
-                            </div>
-                        </div>
-                        <div class="post-content">
-                            <p>`+ whyus[i].content + `</p>
+                        <div data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="whyusItemClick(`+ whyus[i].id + `)" class="icon-post row d-flex justify-content-center pb-2">
+                            <img class="icon col-12 p-0 d-block" src="`+ whyus[i].imgSrc + `">
+                            <div class="title-post col-12 d-block">`+ whyus[i].postTitle + `</div>
                         </div>
                     </div>
                 </article>
@@ -144,26 +221,19 @@ function addObjects() {
     }
 }
 
+function whyusItemClick(id) {
+    $('.modal-body').html('<h5 class="lh-base">' + whyus[id].content + '</h5><button type="button" class="btn btn-primary mt-4">بستن</button>');
+    $('.modal-header').html('<h4 class="modal-title ms-auto" id="staticBackdropLabel"><img class="ms-3" height="60" src="' + whyus[id].imgSrc + '" alt="">' + whyus[id].postTitle + '</h4>');
+}
 
-function scrollToItemSelect(item) {
+function scrollToItem(item) {
     $('.navbar-collapse').removeClass('show');
     $('.navbar-toggler').removeClass('opened');
     $('.navbar-toggler').addClass('collapsed');
     let elementScroll = document.getElementById(item).offsetTop;
-    if (item == "product") {
-        window.scrollTo({ top: elementScroll + 50, behavior: 'smooth' });
-    } else {
-        window.scrollTo({ top: elementScroll - 80, behavior: 'smooth' });
-    }
+    window.scrollTo({ top: elementScroll - 10, behavior: 'smooth' });
 }
 
-
-function getIdItemClicked(id) {
-    $(".product-image .carousel-inner .image-1 img").attr("src", "" + allProduct[id].bottomImage1 + "");
-    $(".product-image .carousel-inner .image-2 img").attr("src", "" + allProduct[id].bottomImage2 + "");
-    $(".product-image .carousel-inner .image-3 img").attr("src", "" + allProduct[id].bottomImage3 + "");
-    $(".product-image .carousel-inner .image-4 img").attr("src", "" + allProduct[id].bottomImage4 + "");
-    $(".title").text(allProduct[id].title);
-    $(".product-secifications .material").text(" تست : " + allProduct[id].material);
-    $(".product-secifications .description").text(" توضیحات : " + allProduct[id].description);
+function setIdProduct(id) {
+    localStorage.setItem("idClicked", id);
 }
