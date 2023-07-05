@@ -721,4 +721,8 @@ body {
     .rpd-slider ul .slide-child-element img {
         width: 56%;
     }
+
+    .product-page .carousel-indicators .bottom-image {
+        margin: 0px 0px;
+    }
 }
